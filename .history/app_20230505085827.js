@@ -26,8 +26,8 @@ app.post('/', (req, res) => {
                 merge_fields: {
                     FNAME: firstName,
                     LNAME: lastName
-                },
-            },
+                }
+            }
         ]
     }
 
@@ -40,13 +40,12 @@ app.post('/', (req, res) => {
     }
     
     const request = https.request(url, options, (response) => {
-        response.on("data", (data) => {
+        response.on("data", () => {
             console.log(JSON.parse(data))
         })
     })
 
-    request.write(jsonData)
-    request.end()
+    console.log(firstName,lastName,email)
 })
 
 app.listen(port, () => {

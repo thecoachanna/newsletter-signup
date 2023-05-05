@@ -26,8 +26,8 @@ app.post('/', (req, res) => {
                 merge_fields: {
                     FNAME: firstName,
                     LNAME: lastName
-                },
-            },
+                }
+            }
         ]
     }
 
@@ -35,18 +35,13 @@ app.post('/', (req, res) => {
     const url = `https://us21.api.mailchimp.com/3.0/lists/f04c0ae617`
 
     const options = {
-        method: "POST",
-        auth: 'coachanna:f9e4624cb98aa032f1f0823fda935159-us21'
+        method: "POST"
     }
-    
-    const request = https.request(url, options, (response) => {
-        response.on("data", (data) => {
-            console.log(JSON.parse(data))
-        })
+    https.request(url, options, (response) => {
+
     })
 
-    request.write(jsonData)
-    request.end()
+    console.log(firstName,lastName,email)
 })
 
 app.listen(port, () => {

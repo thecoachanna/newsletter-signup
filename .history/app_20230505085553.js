@@ -26,8 +26,8 @@ app.post('/', (req, res) => {
                 merge_fields: {
                     FNAME: firstName,
                     LNAME: lastName
-                },
-            },
+                }
+            }
         ]
     }
 
@@ -36,17 +36,13 @@ app.post('/', (req, res) => {
 
     const options = {
         method: "POST",
-        auth: 'coachanna:f9e4624cb98aa032f1f0823fda935159-us21'
+        auth: ''
     }
-    
-    const request = https.request(url, options, (response) => {
-        response.on("data", (data) => {
-            console.log(JSON.parse(data))
-        })
+    https.request(url, options, (response) => {
+
     })
 
-    request.write(jsonData)
-    request.end()
+    console.log(firstName,lastName,email)
 })
 
 app.listen(port, () => {

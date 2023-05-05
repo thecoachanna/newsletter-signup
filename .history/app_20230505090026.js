@@ -40,7 +40,7 @@ app.post('/', (req, res) => {
     }
     
     const request = https.request(url, options, (response) => {
-        response.on("data", (data) => {
+        response.on("data", () => {
             console.log(JSON.parse(data))
         })
     })
