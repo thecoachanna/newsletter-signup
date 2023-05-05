@@ -3,7 +3,6 @@ const https = require('node:https')
 const app = express()
 const port = 3000
 const bodyParser = require('body-parser')
-require('dotenv').config()
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -33,11 +32,11 @@ app.post('/', (req, res) => {
     }
 
     const jsonData = JSON.stringify(data)
-    const url = `https://${process.env.REGION}.api.mailchimp.com/3.0/lists/${process.env.AUDIENCE_ID}`
+    const url = `https://us21.api.mailchimp.com/3.0/lists/f04c0ae617`
 
     const options = {
         method: "POST",
-        auth: `coachanna:${process.env.API_KEY}`
+        auth: 'coachanna:f9e4624cb98aa032f1f0823fda935159-us21'
     }
     
     const request = https.request(url, options, (response) => {
@@ -45,7 +44,7 @@ app.post('/', (req, res) => {
         if (response.statusCode === 200) {
             res.sendFile(__dirname + '/success.html')
         } else {
-            res.sendFile(__dirname + '/failure.html')
+            res.send("There was an error with signing up, please try again.")
         }
 
         response.on("data", (data) => {
@@ -57,10 +56,7 @@ app.post('/', (req, res) => {
     request.end()
 })
 
-app.post('/failure', (req, res) => {
-    res.redirect('/')
-})
-
-app.listen(process.env.PORT || port, () => {
+app.listen(port, () => {
     console.log(`Listening on port: ${port}!`)
 })
+

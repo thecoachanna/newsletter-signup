@@ -3,7 +3,6 @@ const https = require('node:https')
 const app = express()
 const port = 3000
 const bodyParser = require('body-parser')
-require('dotenv').config()
 
 app.use(bodyParser.urlencoded({ extended: true }))
 

@@ -3,7 +3,6 @@ const https = require('node:https')
 const app = express()
 const port = 3000
 const bodyParser = require('body-parser')
-require('dotenv').config()
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -33,11 +32,11 @@ app.post('/', (req, res) => {
     }
 
     const jsonData = JSON.stringify(data)
-    const url = `https://${process.env.REGION}.api.mailchimp.com/3.0/lists/${process.env.AUDIENCE_ID}`
+    const url = `https://${REGION}.api.mailchimp.com/3.0/lists/${AUDIENCE_ID}`
 
     const options = {
         method: "POST",
-        auth: `coachanna:${process.env.API_KEY}`
+        auth: `coachanna:${API_KEY}`
     }
     
     const request = https.request(url, options, (response) => {
